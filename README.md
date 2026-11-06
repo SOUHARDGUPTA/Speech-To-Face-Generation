@@ -1,108 +1,184 @@
 # Speech-to-Face Generation
 
-A Deep Learning project that explores the generation of human face representations from speech audio using machine learning and neural network architectures.
+**An AI-powered web application that generates facial representations from speech audio using Deep Learning.**
 
-## 📌 Project Overview
+Speech-to-Face Generation is a Deep Learning project that explores the relationship between human speech and facial representations. It uses an Audio Spectrogram Transformer (AST) for audio feature extraction and a trained Face Decoder to generate predicted facial representations.
 
-Speech-to-Face Generation aims to reconstruct a visual representation of a speaker's face using their voice as input.
+The project combines a trained deep learning pipeline with a Flask-based web interface, allowing users to upload or record audio and generate a visual output directly in their browser.
 
-The project explores the relationship between speech characteristics and facial representations using deep learning techniques.
+## Features
 
-The implementation is developed using Python and Google Colab.
+- **Audio Upload:** Upload speech recordings in WAV, MP3, OGG, and WEBM formats.
+- **Voice Recording:** Record audio directly through your browser.
+- **Audio Preview:** Listen to the selected recording before processing.
+- **AI-Based Generation:** Process audio using the AST model and trained Face Decoder.
+- **Visual Output:** Display the generated facial representation.
+- **Temporary File Cleanup:** Automatically delete uploaded audio after processing.
+- **Interactive Interface:** Responsive dark-themed web application.
 
-## 🎯 Objectives
+## Technology Stack
 
-- Explore the relationship between speech signals and facial representations.
-- Extract meaningful audio features from speech recordings.
-- Implement deep learning models for speech-to-face generation.
-- Generate visual face representations from audio input.
-- Experiment with model improvements and alternative datasets.
+| Category | Technologies |
+|---|---|
+| Programming Language | Python |
+| Backend | Flask |
+| Deep Learning | PyTorch |
+| Audio Feature Extraction | Hugging Face Transformers (AST) |
+| Audio Processing | Librosa, SoundFile |
+| Visualization | Matplotlib |
+| Frontend | HTML, CSS, JavaScript |
+| Development | VS Code, Jupyter Notebook |
 
-## 🛠️ Technologies Used
+## Model Architecture
 
-- Python
-- PyTorch
-- TensorFlow (conversion-related components, where applicable)
-- NumPy
-- Librosa
-- Matplotlib
-- Hugging Face Transformers
-- Google Colab
+The application follows a multi-stage inference pipeline:
 
-## 🧠 Model Architecture
+1. **Audio Input:** Accepts an uploaded or browser-recorded speech recording.
+2. **Audio Preprocessing:** Normalizes and prepares audio for feature extraction.
+3. **Feature Extraction:** Uses the Audio Spectrogram Transformer (AST) to extract audio representations.
+4. **Face Decoding:** Passes extracted features through the trained Face Decoder.
+5. **Visualization:** Generates and displays the predicted facial representation.
 
-The project uses the following major components:
-
-1. **Audio Preprocessing:** Processes input speech recordings and prepares them for feature extraction.
-2. **Audio Feature Extraction:** Uses an Audio Spectrogram Transformer (AST) to extract meaningful speech features.
-3. **Face Decoder:** Converts learned audio representations into facial representations.
-4. **Inference:** Generates and visualizes the predicted face representation from an audio recording.
-
-## 📂 Repository Structure
+## Project Structure
 
 ```text
 Speech-To-Face-Generation/
 │
+├── app.py
+├── face_generator.py
+├── requirements.txt
+├── .gitignore
 ├── README.md
+│
+├── models/
+│   ├── ast.pt
+│   └── face_decoder.pt
+│
+├── model_source/
+│   └── Speech-to-face/
+│       └── src/
+│           ├── models/
+│           ├── data_preprocessing/
+│           └── ...
+│
+├── templates/
+│   └── index.html
+│
+├── static/
+│   ├── style.css
+│   ├── script.js
+│   └── generated/
+│
+├── uploads/
 │
 └── S2F_final.ipynb
 ```
 
-The Google Colab notebook contains the current implementation.
+**Note:** The trained model checkpoints are required to run inference but are not included in this repository because of their large file sizes.
 
-## 🚀 Getting Started
+## Getting Started
 
-### 1. Open the Notebook
+### 1. Clone the Repository
 
-Open `S2F_final.ipynb` using Google Colab.
-
-### 2. Install Dependencies
-
-Install the required libraries in Colab:
-
-```python
-!pip install torch torchvision torchaudio
-!pip install transformers librosa matplotlib numpy
-!pip install ffmpeg-python ffmpeg-normalize
+```bash
+git clone https://github.com/SOUHARDGUPTA/Speech-To-Face-Generation.git
+cd Speech-To-Face-Generation
 ```
 
-### 3. Prepare the Input Audio
+### 2. Create a Virtual Environment
 
-Upload a speech recording in a supported audio format, such as WAV or OGG.
+```bash
+python -m venv .venv
+```
 
-### 4. Run the Notebook
+Activate it on Windows PowerShell:
 
-Execute the notebook cells sequentially to perform preprocessing, feature extraction, model loading, and inference.
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
 
-### 5. Generate Output
+### 3. Install Dependencies
 
-The model generates a predicted facial representation based on the provided speech recording.
+```bash
+pip install -r requirements.txt
+```
 
-## 📊 Dataset
+PyTorch installation may require a CPU-specific or CUDA-compatible build depending on your system.
 
-The project uses speech recordings and pretrained model components.
+### 4. Install FFmpeg
 
-Future development will explore suitable datasets containing paired audio and facial information, including datasets with Indian speakers.
+Install FFmpeg separately and make sure its executable is available in your system PATH.
 
-## 🔮 Future Improvements
+### 5. Add Model Checkpoints
 
-- Experiment with Indian speaker datasets.
-- Fine-tune the model using additional paired audio-face data.
+Place the required trained model files inside the `models/` directory:
+
+```text
+models/
+├── ast.pt
+└── face_decoder.pt
+```
+
+The checkpoint files are not distributed with this repository. You must obtain the compatible trained checkpoints separately.
+
+### 6. Run the Application
+
+```bash
+python app.py
+```
+
+Open your browser and visit:
+
+```text
+http://127.0.0.1:5000/
+```
+
+## Usage
+
+1. Open the web application.
+2. Upload an audio recording or record your voice.
+3. Preview the selected audio.
+4. Click the Generate button.
+5. Wait for the AI inference process to finish.
+6. View the generated facial representation.
+
+## Research Background
+
+The project explores how speech characteristics can be used to generate facial representations through deep learning.
+
+It uses an Audio Spectrogram Transformer (AST) for audio representation learning and a neural network-based Face Decoder for generating visual representations.
+
+The project also includes a Jupyter Notebook containing the original model implementation and experimentation workflow.
+
+## Limitations
+
+- Generated faces are model predictions, not verified photographs of the actual speaker.
+- Speech does not uniquely determine a person's real facial appearance.
+- Output quality depends on the training data, model architecture, and trained checkpoints.
+- Inference performance depends on available hardware.
+- Further evaluation is required to assess generalization across different speakers and recording conditions.
+
+## Future Improvements
+
 - Improve facial representation quality.
-- Explore different audio feature extraction techniques.
-- Experiment with alternative deep learning architectures.
-- Improve model performance and generalization.
+- Experiment with additional speech and paired audio-face datasets.
+- Evaluate model generalization across different speaker populations.
+- Optimize inference speed and resource consumption.
+- Explore alternative deep learning architectures.
+- Deploy the application as a publicly accessible web service.
 
-## ⚠️ Limitations
-
-- Generated faces are model predictions, not verified photographs of speakers.
-- Speech alone does not uniquely determine a person's actual facial appearance.
-- Output quality depends on the training data and pretrained model.
-- Additional experimentation is required to evaluate performance across different speaker populations.
-
-## 👨‍💻 Author
+## Author
 
 **Souhard Gupta**
+
+B.Tech – Mathematics and Computing  
+Shri Mata Vaishno Devi University (SMVDU)
+
+GitHub: [@SOUHARDGUPTA](https://github.com/SOUHARDGUPTA)
+
+---
+
+*Developed as a Deep Learning project exploring speech-based facial representation generation.*
 
 B.Tech – Mathematics and Computing
 
