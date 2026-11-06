@@ -1,0 +1,30 @@
+# Python environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Large trained model checkpoints
+models/*.pt
+
+# Temporary audio uploads
+uploads/*
+!uploads/.gitkeep
+
+# Generated output
+static/generated/*
+!static/generated/.gitkeep
+static/generated_face.png
+generated_face.png
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/

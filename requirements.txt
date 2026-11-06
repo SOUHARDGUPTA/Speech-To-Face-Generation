@@ -1,0 +1,10 @@
+
+Flask
+torch
+transformers==4.57.1
+librosa
+numpy
+matplotlib
+tqdm
+ffmpeg-python
+soundfile

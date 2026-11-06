@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Audio To Face AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <main class="main-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">S2F <span>/ AI</span></div>
+            <div class="status">
+                <span class="status-dot"></span>
+                AI POWERED
+            </div>
+        </header>
+
+        <!-- Hero section -->
+        <section class="hero">
+            <p class="eyebrow">SPEECH TO FACE GENERATION</p>
+
+            <h1>
+                FROM VOICE<br>
+                <span>TO FACE.</span>
+            </h1>
+
+            <p class="hero-description">
+                Transform speech audio into AI-generated facial representations.
+                Upload an audio file or record your voice to get started.
+            </p>
+        </section>
+
+        <!-- Audio input section -->
+        <section class="input-section">
+
+            <div class="section-heading">
+                <h2>CHOOSE YOUR AUDIO SOURCE</h2>
+                <p>Select one of the options below.</p>
+            </div>
+
+            <div class="input-options">
+
+                <!-- Upload option -->
+                <div class="option-card">
+                    <div class="option-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 16V4"/>
+                            <path d="m7 9 5-5 5 5"/>
+                            <path d="M4 16v4h16v-4"/>
+                        </svg>
+                    </div>
+
+                    <h3>UPLOAD EXISTING AUDIO</h3>
+
+                    <p>
+                        Choose an audio file from your device.
+                    </p>
+
+                    <label for="audioFile" class="action-button">
+                        CHOOSE AUDIO FILE
+                    </label>
+
+                    <input
+                        type="file"
+                        id="audioFile"
+                        accept=".wav,.mp3,.ogg,audio/wav,audio/mpeg,audio/ogg"
+                        hidden
+                    >
+
+                    <span class="format-note">WAV · MP3 · OGG</span>
+                </div>
+
+                <!-- OR separator -->
+                <div class="or-divider">
+                    <span></span>
+                    <p>OR</p>
+                    <span></span>
+                </div>
+
+                <!-- Record option -->
+                <div class="option-card">
+                    <div class="option-icon">
+                        <svg viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="1.7"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="2" width="6" height="13" rx="3"/>
+                            <path d="M5 10v2a7 7 0 0 0 14 0v-2"/>
+                            <path d="M12 19v3"/>
+                            <path d="M8 22h8"/>
+                        </svg>
+                    </div>
+
+                    <h3>RECORD NEW AUDIO</h3>
+
+                    <p>
+                        Record your voice directly using your microphone.
+                    </p>
+
+                    <div id="recordPlaceholder">
+                        Your recording controls will appear here.
+                    </div>
+
+                    <span class="format-note">MICROPHONE INPUT</span>
+                </div>
+
+            </div>
+
+            <!-- Audio preview -->
+            <div class="audio-preview-section">
+                <div class="preview-heading">
+                    <h3>AUDIO PREVIEW</h3>
+                    <span class="preview-label">INPUT</span>
+                </div>
+
+                <div id="audioPreview">
+                    <p class="empty-message">
+                        Your selected or recorded audio will appear here.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Generate button -->
+            <div class="generate-section">
+                <button id="generateBtn" class="generate-button" disabled>
+                    GENERATE FACE
+                    <span>→</span>
+                </button>
+
+                <p class="generate-note">
+                    Your audio will be processed by the AI model.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- Generated result -->
+        <section class="result-section">
+            <div class="result-heading">
+                <h2>GENERATED RESULT</h2>
+                <p>Your AI-generated facial representation.</p>
+            </div>
+
+            <div id="result">
+                <div class="result-placeholder">
+                    <div class="result-placeholder-icon">✦</div>
+                    <p>Your generated face will appear here.</p>
+                </div>
+            </div>
+            
+            <!-- AI PROCESSING SCREEN -->
+            <div id="loadingScreen" class="loading-screen hidden">
+                <div class="loader"></div>
+                <h3>ANALYSING YOUR VOICE</h3>
+                <p id="loadingMessage">Preparing your audio...</p>
+                <div class="loading-progress">
+                    <div class="loading-progress-bar"></div>
+                </div>
+                <span class="loading-note">PLEASE WAIT WHILE THE AI MODEL PROCESSES YOUR AUDIO</span>
+            </div>
+            </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>S2F / AI</span>
+            <span>SPEECH TO FACE GENERATION</span>
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+
