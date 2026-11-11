@@ -28,3 +28,25 @@ generated_face.png
 .DS_Store
 Thumbs.db
 .vscode/
+
+# MAV-Celeb dataset
+data/raw/
+data/processed/
+*.zip
+
+# Uploaded and generated files
+uploads/
+static/generated/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+
+# Model checkpoints
+*.pt
+*.pth
+*.ckpt
